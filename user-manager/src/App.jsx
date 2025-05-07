@@ -9,18 +9,27 @@ import { ThemeProvider } from './context/ThemeContext'
 
 function App() {
   return (
-    <UserProvider>
-    <ThemeProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<UserList />} />
-          <Route path='/user' element={<UserRegistration />} />
-          <Route path='/user/:id' element={<UserDetail />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-      </ThemeProvider>
-    </UserProvider>
+    // <UserProvider>
+    // <ThemeProvider>
+    //   <BrowserRouter>
+    //     <Routes>
+    //       <Route path='/' element={<UserList />} />
+    //       <Route path='/user' element={<UserRegistration />} />
+    //       <Route path='/user/:id' element={<UserDetail />} />
+    //       <Route path='*' element={<NotFound />} />
+    //     </Routes>
+    //   </BrowserRouter>
+    //   </ThemeProvider>
+    // </UserProvider>
+
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<UserList />} />
+      <Route path='/user' element={<UserRegistration />} />
+      <Route path='/user/:id' element={<UserDetail />} />
+      <Route path='*' element={<NotFound />} />
+    </Routes>
+    </BrowserRouter>
   )
 }
 

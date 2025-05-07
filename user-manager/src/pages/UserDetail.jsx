@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components'
 import { useUser } from '../context/UserContext';
 import { useTheme } from '../context/ThemeContext';
+import useUserStore from '../store/useUserStore';
+import useThemeStore from '../store/useThemeStore';
 
 const UserCard = styled.div`
     width: 300px;
@@ -64,8 +66,10 @@ const DeleteButton = styled.button`
 `
 
 const UserDetail = () => {
-    const {isDarkMode} = useTheme();
-    const {deleteUser, findUser ,updateUserStatus} = useUser();
+    //const {isDarkMode} = useTheme();
+    const {isDarkMode} = useThemeStore();
+    //const {deleteUser, findUser ,updateUserStatus} = useUser();
+    const {deleteUser, findUser ,updateUserStatus} = useUserStore();
     const { id } = useParams();
     const user = findUser(parseInt(id)); 
     const navigate = useNavigate();

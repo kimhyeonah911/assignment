@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { useUser } from '../context/UserContext';
 import { useTheme } from '../context/ThemeContext';
 import UserCard from '../components/user/UserCard';
+import useUserStore from '../store/useUserStore';
+import useThemeStore from '../store/useThemeStore';
 
 const UserCardContainer = styled.div`
   width: 200px;
@@ -50,8 +52,10 @@ const ThemeButton = styled.button`
 `;
 
 const UserList = () => {
-    const {users} = useUser();
-    const {isDarkMode, toggleTheme} = useTheme();
+    //const {users} = useUser();
+    //const {isDarkMode, toggleTheme} = useTheme();
+    const {users} = useUserStore();
+    const {isDarkMode, toggleTheme} = useThemeStore();
 
     return (
         <Container>

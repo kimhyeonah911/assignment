@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { useUser } from '../context/UserContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import useUserStore from '../store/useUserStore';
+import useThemeStore from '../store/useThemeStore';
 
 const FormContainer = styled.div`
   padding: 20px;
@@ -75,11 +77,12 @@ const Button = styled.button`
 `;
 
 const UserRegistration = () => {
-    const {isDarkMode} = useTheme();
+    //const {isDarkMode} = useTheme();
+    const {isDarkMode} = useThemeStore();
     const [name, setName] = useState('');
     const [age, setAge] = useState(20);
     const [isOnline] = useState(false);
-    const {insertUser} = useUser();
+    const {insertUser} = useUserStore();
     const navigate = useNavigate();
 
     const onChangeName = (e) => {
