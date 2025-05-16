@@ -1,0 +1,638 @@
+{
+  "users": [
+    {
+      "password": "pass01",
+      "name": "유저01",
+      "id": "user01"
+    },
+    {
+      "id": "user02",
+      "password": "pass02",
+      "name": "유저02"
+    },
+    {
+      "id": "user03",
+      "password": "pass03",
+      "name": "유저03"
+    },
+    {
+      "id": "user04",
+      "password": "pass04",
+      "name": "유저04"
+    }
+  ],
+  "categorys": [
+    {
+      "id": "1",
+      "name": "자바"
+    },
+    {
+      "id": "2",
+      "name": "스프링"
+    },
+    {
+      "id": "3",
+      "name": "리액트"
+    },
+    {
+      "id": "4",
+      "name": "자바스크립트"
+    },
+    {
+      "id": "5",
+      "name": "데이터베이스"
+    }
+  ],
+  "boards": [
+    {
+      "id": "1",
+      "title": "자바의 제네릭이 너무 헷갈려요",
+      "content": "자바에서 제네릭(Generic)을 사용할 때마다 항상 혼란스럽습니다. 특히 `<?>`, `<? extends T>`, `<? super T>` 같은 와일드카드 표현이 왜 필요한지 이해하기 어렵습니다. 각각이 어떤 의미를 갖고 어떤 상황에서 사용해야 하는지 구체적인 예제가 있으면 좋겠습니다. 또한 List<T>와 List<?>는 어떤 차이가 있고, 메서드 파라미터나 반환 타입으로 사용할 때 어떤 기준으로 선택해야 할지도 궁금합니다. 실무에서 제네릭이 어떻게 사용되는지도 알고 싶어요.",
+      "categoryId": "1",
+      "userId": "user01",
+      "createDate": "2025-03-02",
+      "count": 68
+    },
+    {
+      "id": "2",
+      "title": "StringBuilder와 StringBuffer 차이?",
+      "content": "자바에서 문자열을 반복적으로 조작할 때 `StringBuilder`와 `StringBuffer` 중 어떤 것을 사용해야 할지 헷갈립니다. 두 클래스 모두 가변 문자열을 제공한다는 점은 알겠는데, 구체적으로 어떤 차이가 있는 건가요? 특히 멀티쓰레드 환경에서는 어떤 영향을 주는지도 궁금합니다. 성능 측면에서 차이가 나는지, 그리고 실무에서는 어떤 기준으로 선택하는지도 알려주시면 감사하겠습니다. 예제 코드도 함께 부탁드립니다!",
+      "categoryId": "1",
+      "userId": "user03",
+      "createDate": "2025-03-05",
+      "count": 26
+    },
+    {
+      "id": "3",
+      "title": "자바 예외처리 try-catch-finally 순서가 궁금해요",
+      "content": "자바의 예외처리 구문인 try-catch-finally에서 finally 블록은 항상 실행된다고 배웠는데, 실제로 return 문이 있거나 예외가 발생했을 때도 항상 실행되는지 궁금합니다. 혹시 finally 블록이 무시되거나 실행되지 않는 특별한 상황이 있을까요? 또한 try 안에서 return을 하게 되면 finally의 실행 순서는 어떻게 되는지도 예제를 통해 이해하고 싶습니다.",
+      "categoryId": "1",
+      "userId": "user03",
+      "createDate": "2025-03-10",
+      "count": 17
+    },
+    {
+      "id": "4",
+      "title": "스프링 DI가 정확히 뭐예요?",
+      "content": "스프링 프레임워크에서 핵심 개념으로 나오는 DI(Dependency Injection)가 정확히 어떤 개념인지 궁금합니다. 생성자 주입, 필드 주입, 세터 주입 등 다양한 방식이 있는 것 같은데, 각각의 차이점과 장단점이 무엇인가요? 또한 DI가 왜 필요한지, 그리고 스프링 컨테이너가 어떤 방식으로 의존성을 주입해주는지도 구체적인 흐름을 알고 싶습니다. 실무에서는 어떤 주입 방식을 더 선호하는지도 궁금합니다.",
+      "categoryId": "2",
+      "userId": "user02",
+      "createDate": "2025-03-11",
+      "count": 10
+    },
+    {
+      "id": "5",
+      "title": "스프링에서 AOP가 왜 필요한가요?",
+      "content": "스프링 AOP(Aspect-Oriented Programming)가 왜 필요한지 잘 모르겠습니다. 보통 로그 출력, 트랜잭션 처리 같은 데 사용된다고 하는데, 이런 기능을 그냥 코드로 직접 구현하면 안 되는 건가요? AOP가 실제로 어떤 구조로 동작하는지, 그리고 `@Aspect`, `@Before`, `@After` 등의 어노테이션이 어떻게 활용되는지 예제를 통해 이해하고 싶습니다. 실무에서는 어떤 시점에 AOP를 적용하는지도 알려주세요.",
+      "categoryId": "2",
+      "userId": "user01",
+      "createDate": "2025-03-11",
+      "count": 22
+    },
+    {
+      "id": "6",
+      "title": "스프링 부트에서 @RestController는 뭐예요?",
+      "content": "스프링 부트를 공부하면서 `@RestController`를 자주 보게 되는데, `@Controller`와 어떤 차이가 있는지 잘 모르겠습니다. `@RestController`는 단순히 `@ResponseBody`가 포함된 형태라고 들었는데, 실제로 어떤 차이를 만들고 언제 어떤 걸 써야 하는지 감이 안 옵니다. 예를 들어 뷰를 렌더링할 때와 JSON 데이터를 반환할 때 어떤 어노테이션을 써야 하는지 정확히 알고 싶습니다.",
+      "categoryId": "2",
+      "userId": "user04",
+      "createDate": "2025-03-19",
+      "count": 16
+    },
+    {
+      "id": "7",
+      "title": "리액트 상태 관리 어떻게 해야 하나요?",
+      "content": "React에서 상태 관리를 하다 보면 컴포넌트가 복잡해지고 상태도 여러 곳에서 공유되면서 점점 어려워지는 것 같습니다. 단순한 상태는 `useState`로 충분한데, 컴포넌트 간 상태 공유나 글로벌 상태가 필요한 경우에는 어떤 방식이 적절한가요? Context API, Redux, Recoil, Zustand 등 다양한 라이브러리가 있는데 각각 어떤 특징이 있고 어떤 상황에 적합한지 궁금합니다. 프로젝트 규모에 따라 어떻게 선택하는지도 알려주세요.",
+      "categoryId": "3",
+      "userId": "user01",
+      "createDate": "2025-03-25",
+      "count": 16
+    },
+    {
+      "id": "8",
+      "title": "useEffect 의존성 배열 너무 어려워요",
+      "content": "`useEffect` 훅을 사용할 때 의존성 배열(dependency array)이 헷갈립니다. 어떤 값을 넣어야 하고, 빈 배열로 남겨두면 어떤 의미인지 명확히 알고 싶습니다. 또한 무한 루프가 발생하는 이유도 이해가 잘 안 됩니다. 예를 들어 상태를 업데이트할 때마다 `useEffect`가 반복 실행되는 상황을 어떻게 방지해야 하는지도 궁금합니다. 의존성 배열을 설정할 때의 팁이나 주의사항이 있다면 알려주세요.",
+      "categoryId": "3",
+      "userId": "user03",
+      "createDate": "2025-03-28",
+      "count": 17
+    },
+    {
+      "id": "9",
+      "title": "컴포넌트 재사용성 높이는 법?",
+      "content": "React에서 컴포넌트를 작성하다 보면 점점 비슷한 구조의 컴포넌트가 늘어나는 것 같습니다. 재사용성을 높이기 위해 어떤 기준으로 컴포넌트를 분리하고 추상화해야 하는지 궁금합니다. props, children, composition을 어떻게 활용하면 더 유연한 컴포넌트를 만들 수 있을까요? styled-components나 tailwindcss를 사용할 때 디자인까지 고려한 재사용성 높은 컴포넌트 구조 예시가 있다면 공유해주세요.",
+      "categoryId": "3",
+      "userId": "user04",
+      "createDate": "2025-04-01",
+      "count": 5
+    },
+    {
+      "id": "10",
+      "title": "자바스크립트 클로저 개념 설명 부탁드려요",
+      "content": "자바스크립트에서 클로저(Closure)가 뭔지 정확히 이해가 안 됩니다. 함수 안에 함수가 선언되는 구조는 알겠는데, 외부 함수의 변수를 내부 함수에서 참조할 수 있다는 게 왜 중요한지 모르겠어요. 또, 클로저가 실제로 어떤 상황에서 사용되는지 잘 떠오르지도 않고요. 면접에서 자주 등장한다고 하는데, 실무에서는 어떤 패턴이나 라이브러리에서 클로저가 활용되는지도 예시와 함께 설명해주시면 감사하겠습니다. 메모리 누수와도 관련이 있다고 들었는데, 그 이유도 궁금합니다.",
+      "categoryId": "4",
+      "userId": "user04",
+      "createDate": "2025-04-06",
+      "count": 10
+    },
+    {
+      "id": "11",
+      "title": "비동기 처리 async/await vs then",
+      "content": "자바스크립트에서 비동기 처리할 때 `then` 체인을 쓰는 방법과 `async/await` 문법이 있잖아요. 보통은 async/await이 가독성이 좋다고 하는데, 실제로 어떤 상황에서 각각의 방식이 더 적합한지 알고 싶습니다. 예외 처리나 에러 핸들링은 어떤 방식이 더 편한가요? 그리고 성능적인 차이는 없는지도 궁금합니다. 콜백 지옥을 피하려면 어떤 방법이 더 좋고, 실무에서는 어떤 방식이 더 많이 사용되는지도 알려주세요.",
+      "categoryId": "4",
+      "userId": "user02",
+      "createDate": "2025-04-07",
+      "count": 11
+    },
+    {
+      "id": "12",
+      "title": "호이스팅과 TDZ 정확히 뭔가요?",
+      "content": "자바스크립트에서 var, let, const가 어떻게 다르게 동작하는지 항상 헷갈립니다. 특히 '호이스팅'과 'TDZ(Temporal Dead Zone)' 개념이 혼란스러운데요, 코드 실행 순서와 메모리 할당이 어떻게 되는지 설명 부탁드립니다. 왜 let이나 const는 선언 전에 접근하면 ReferenceError가 나고, var는 undefined가 되는 건가요? 각각이 메모리에 어떻게 올라가는지 구체적으로 설명해주시면 감사하겠습니다. 직관적인 예제도 함께 있으면 좋을 것 같아요!",
+      "categoryId": "4",
+      "userId": "user01",
+      "createDate": "2025-04-15",
+      "count": 9
+    },
+    {
+      "id": "13",
+      "title": "정규화가 뭔가요?",
+      "content": "데이터베이스를 설계하다 보면 1NF, 2NF, 3NF 같은 정규화 개념이 나오는데, 각각이 어떤 차이가 있는지 이해가 잘 안 됩니다. 왜 정규화를 해야 하는지도 명확하지 않고, 그냥 테이블을 나누는 게 전부인가 싶어요. 중복을 줄인다는 건 알겠는데, 실제로 어떤 기준으로 테이블을 나누고 어떤 경우에 정규화를 포기하는지도 궁금합니다. 실무에서 정규화를 어디까지 적용하는지, 예시와 함께 설명해주시면 정말 도움이 될 것 같아요.",
+      "categoryId": "5",
+      "userId": "user04",
+      "createDate": "2025-04-17",
+      "count": 5
+    },
+    {
+      "id": "14",
+      "title": "인덱스를 꼭 써야 하나요?",
+      "content": "데이터베이스에서 인덱스를 쓰면 성능이 좋아진다고 하는데, 왜 그런지 구체적인 이유를 알고 싶습니다. SELECT 문에서 인덱스가 어떻게 작동하는지, 쿼리 성능이 실제로 얼마나 개선되는지도 궁금하고요. 반대로 인덱스를 너무 많이 걸면 오히려 성능이 떨어질 수도 있다고 들었는데, 그건 어떤 경우인가요? 어떤 컬럼에 인덱스를 걸어야 효과적인지도 기준이 궁금합니다. 실행 계획(EXPLAIN)과 함께 설명해주시면 더 좋을 것 같아요.",
+      "categoryId": "5",
+      "userId": "user02",
+      "createDate": "2025-04-21",
+      "count": 15
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "boardId": 1,
+      "userId": "user02",
+      "createDate": "2025-03-04",
+      "content": "`<?>`는 모든 타입을 포괄하는 와일드카드이고, `<? extends T>`는 T와 그 하위 타입만 허용해요. 예를 들어 `List<? extends Number>`는 `List<Integer>`나 `List<Double>` 등을 받을 수 있지만, 거기서 값을 추가할 수는 없어요. 반대로 `<? super T>`는 T와 그 상위 타입만 가능해서 삽입은 가능하지만 꺼낼 때는 Object로 꺼내야 하죠."
+    },
+    {
+      "id": "2",
+      "boardId": 1,
+      "userId": "user03",
+      "createDate": "2025-03-04",
+      "content": "실무에서는 `<? super T>`를 자주 써요. 특히 Comparator 같은 경우는 `Comparator<? super T>`로 정의되어 있어서, 정렬 기준이 T나 그 상위 타입으로 정의된 것도 허용할 수 있게 하죠."
+    },
+    {
+      "id": "3",
+      "boardId": 1,
+      "userId": "user04",
+      "createDate": "2025-03-05",
+      "content": "`List<T>`와 `List<?>`의 가장 큰 차이는 읽기/쓰기 권한이에요. `List<T>`는 특정 타입이 정해져 있어서 데이터를 읽고 쓸 수 있지만, `List<?>`는 타입이 불분명해서 읽기만 가능하죠. 예를 들어 `List<?> list = new ArrayList<Integer>();`는 값을 추가할 수 없어요."
+    },
+    {
+      "id": "4",
+      "boardId": 1,
+      "userId": "user05",
+      "createDate": "2025-03-06",
+      "content": "`<? extends T>`를 쓰면 PECS 원칙 중 'Producer Extends'에 해당해요. 값을 생산(읽기)만 하고 싶을 때 쓰는 거고요. `<? super T>`는 'Consumer Super'에 해당해서 소비(쓰기)할 수 있게 됩니다. 이 개념 기억하면 쓸 때 훨씬 쉬워요!"
+    },
+    {
+      "id": "5",
+      "boardId": 1,
+      "userId": "user06",
+      "createDate": "2025-03-06",
+      "content": "개인적으로 가장 헷갈렸던 건 `List<? super Integer>`였어요. 처음엔 왜 `Integer` 대신 `Number`나 `Object`가 나오는지 몰랐거든요. 이건 결국 'Integer 이상'을 받겠다는 의미라서 그렇더라고요. 쓰는 입장에서는 `add(Integer)`는 되지만, 꺼낼 때는 `Object`로 나와서 형변환이 필요하다는 점 참고하세요."
+    },
+    {
+      "id": "6",
+      "boardId": 1,
+      "userId": "user07",
+      "createDate": "2025-03-07",
+      "content": "실무에서 자주 보이는 패턴 중 하나는 리포지토리 같은 인터페이스를 제네릭으로 만드는 거예요. 예: `interface Repository<T> { void save(T t); T findById(int id); }` 이런 식으로 도메인마다 타입을 바꿔서 재사용할 수 있어요. 스프링 데이터 JPA도 이 구조를 따릅니다."
+    },
+    {
+      "id": "7",
+      "boardId": 1,
+      "userId": "user08",
+      "createDate": "2025-03-08",
+      "content": "제가 만든 유틸 함수 중에 `copy(List<? extends T> src, List<? super T> dest)` 형태로 쓰는 게 있었는데, 이럴 때 와일드카드를 어떻게 조합하느냐에 따라 유연성이 확 달라지더라고요. 한 번 예제로 직접 구현해보면 확 와닿습니다."
+    },
+    {
+      "id": "8",
+      "boardId": 1,
+      "userId": "user09",
+      "createDate": "2025-03-08",
+      "content": "책으로는 이펙티브 자바의 제네릭 챕터가 정말 좋아요. 특히 '항상 가능한 한 구체적으로 선언하라'는 팁이 기억에 남네요. 너무 와일드카드로 추상화하면 오히려 코드 읽기 어려워지더라고요."
+    },
+    {
+      "id": "9",
+      "boardId": 2,
+      "userId": "user01",
+      "createDate": "2025-03-06",
+      "content": "`StringBuilder`는 싱글스레드 환경에서 사용되고, `StringBuffer`는 멀티스레드 환경에서도 안전하게 사용할 수 있도록 동기화(synchronized) 처리가 되어 있어요. 그래서 대부분의 경우 `StringBuilder`가 성능상 유리합니다."
+    },
+    {
+      "id": "10",
+      "boardId": 2,
+      "userId": "user04",
+      "createDate": "2025-03-06",
+      "content": "멀티쓰레드 환경이 아니면 `StringBuffer`는 오히려 불필요한 오버헤드가 있어서 잘 안 써요. 예를 들어 웹 애플리케이션에서 컨트롤러나 서비스 단에서 문자열을 처리할 때는 거의 무조건 `StringBuilder`를 씁니다."
+    },
+    {
+      "id": "11",
+      "boardId": 2,
+      "userId": "user05",
+      "createDate": "2025-03-06",
+      "content": "예제 코드로 보면 이런 느낌입니다:\n```java\nStringBuilder sb = new StringBuilder();\nsb.append(\"Hello\");\nsb.append(\" World\");\nSystem.out.println(sb.toString());\n```\n동일한 코드에서 `StringBuffer`로 바꿔도 동작은 같지만, `StringBuffer`는 각 메서드에 synchronized 키워드가 있어서 성능 차이가 발생합니다."
+    },
+    {
+      "id": "12",
+      "boardId": 2,
+      "userId": "user06",
+      "createDate": "2025-03-07",
+      "content": "실제로 성능 차이가 꽤 납니다. 100만 번 반복해서 append 돌려보면 `StringBuilder`가 훨씬 빠르더라고요. 성능 테스트 해보면 확실하게 느껴집니다."
+    },
+    {
+      "id": "13",
+      "boardId": 2,
+      "userId": "user07",
+      "createDate": "2025-03-07",
+      "content": "`StringBuffer`는 거의 레거시 코드에서만 쓰고 있어요. 요즘 멀티스레드 환경에서는 오히려 `StringBuilder` + 필요한 부분만 별도로 동기화 처리하는 게 더 낫다고 봐요. 무조건 전부 동기화하는 건 성능 측면에서 손해가 커요."
+    },
+    {
+      "id": "14",
+      "boardId": 2,
+      "userId": "user08",
+      "createDate": "2025-03-08",
+      "content": "가변 문자열이라는 점에서는 둘 다 좋지만, 실무에서는 다음 기준으로 씁니다:\n- 단일 쓰레드: `StringBuilder`\n- 멀티 쓰레드: `StringBuffer` (하지만 잘 안 씀)\n- 고성능이 중요하면 자체적으로 동기화 로직 설계\n이 정도 정리하면 될 것 같아요."
+    },
+    {
+      "id": "15",
+      "boardId": 2,
+      "userId": "user02",
+      "createDate": "2025-03-08",
+      "content": "동기화 문제 때문에 `StringBuffer`가 안전하긴 한데, 스레드 안전이 꼭 필요한 상황이 아니라면 과하게 보호되는 셈이라 오히려 느려요. 특히 반복문 안에서 문자열 조작하는 경우는 `StringBuilder`가 거의 기본입니다."
+    },
+    {
+      "id": "16",
+      "boardId": 3,
+      "userId": "user01",
+      "createDate": "2025-03-10",
+      "content": "`finally` 블록은 `try`에서 `return`을 하더라도 반드시 실행됩니다. 자바의 명세에 그렇게 되어 있어요. 실제로 아래처럼 테스트해보면 `finally`는 실행돼요:\n```java\npublic String test() {\n    try {\n        return \"try\";\n    } finally {\n        System.out.println(\"finally 실행됨\");\n    }\n}\n```"
+    },
+    {
+      "id": "17",
+      "boardId": 3,
+      "userId": "user05",
+      "createDate": "2025-03-10",
+      "content": "예외가 발생해도 `finally`는 실행돼요. 심지어 `catch` 블록 없이 `try-finally`만 있어도 finally는 항상 실행됩니다. 예외가 잡히든 안 잡히든요. 다만, `System.exit(0)` 같은 강제 종료가 호출되면 `finally`는 실행되지 않아요."
+    },
+    {
+      "id": "18",
+      "boardId": 3,
+      "userId": "user06",
+      "createDate": "2025-03-10",
+      "content": "아주 특별한 상황에서는 `finally`가 건너뛰어지기도 해요. 예를 들어 `JVM`이 강제 종료되거나, `try`나 `catch` 안에서 `System.exit()`를 호출하면 `finally`는 실행되지 않아요. 이런 건 예외적인 케이스예요."
+    },
+    {
+      "id": "19",
+      "boardId": 3,
+      "userId": "user02",
+      "createDate": "2025-03-11",
+      "content": "`return`이 먼저 호출되더라도, 자바는 내부적으로 `finally` 블록을 먼저 실행하고 그다음에 반환값을 넘깁니다. 이걸 컴파일된 바이트코드로 보면 `return`이 delay되고 `finally`가 먼저 실행되는 걸 확인할 수 있어요."
+    },
+    {
+      "id": "20",
+      "boardId": 3,
+      "userId": "user07",
+      "createDate": "2025-03-11",
+      "content": "추가로 조심할 건, `finally` 안에서 또 `return`을 해버리면, 원래 `try`나 `catch`의 `return`은 무시됩니다. 그래서 일반적으로 `finally`에서는 로그나 리소스 정리만 하고 `return`은 하지 않는 게 좋아요."
+    },
+    {
+      "id": "21",
+      "boardId": 3,
+      "userId": "user04",
+      "createDate": "2025-03-12",
+      "content": "`try-catch-finally`는 리소스 정리에 필수적이라서 `finally`는 거의 항상 실행된다고 봐야 해요. 특히 `파일 스트림 닫기`, `DB 커넥션 반환` 같은 작업은 `finally` 안에 두는 게 일반적이죠."
+    },
+    {
+      "id": "22",
+      "boardId": 4,
+      "userId": "user03",
+      "createDate": "2025-03-11",
+      "content": "DI(Dependency Injection)는 객체 간의 의존 관계를 개발자가 직접 생성하지 않고, 스프링 컨테이너가 대신 주입해주는 개념이에요. 즉, 내가 어떤 객체가 필요한지 선언만 해두면, 스프링이 대신 만들어서 넣어줘요. 객체 간 결합도를 낮추는 데 큰 도움이 됩니다."
+    },
+    {
+      "id": "23",
+      "boardId": 4,
+      "userId": "user01",
+      "createDate": "2025-03-11",
+      "content": "주입 방식은 크게 3가지예요. 생성자 주입은 객체 생성 시 필수 의존성을 주입받고, 필드 주입은 `@Autowired`를 변수에 붙여 바로 주입받죠. 세터 주입은 필요할 때만 의존성을 설정할 수 있어서 유연하긴 해요. 하지만 실무에서는 대부분 생성자 주입을 추천해요. 테스트도 용이하고, 불변성도 보장돼요."
+    },
+    {
+      "id": "24",
+      "boardId": 4,
+      "userId": "user05",
+      "createDate": "2025-03-12",
+      "content": "필드 주입은 편하긴 한데, 테스트할 때 mocking이 어렵고, 프록시 객체와 충돌 가능성도 있어서 지양하는 추세예요. 생성자 주입은 의존성이 명확하게 드러나서 코드의 가독성과 유지보수성이 좋아집니다."
+    },
+    {
+      "id": "25",
+      "boardId": 4,
+      "userId": "user06",
+      "createDate": "2025-03-12",
+      "content": "스프링 컨테이너는 애플리케이션 구동 시 `@ComponentScan`이나 `@Configuration`을 통해 Bean을 생성하고, `@Autowired`, `@Inject`, `@Resource` 등을 통해 필요한 의존성을 주입해줘요. 생성자에 주입하는 경우엔 해당 파라미터에 맞는 Bean을 자동으로 찾아 넣습니다."
+    },
+    {
+      "id": "26",
+      "boardId": 4,
+      "userId": "user04",
+      "createDate": "2025-03-12",
+      "content": "의존성 주입이 중요한 이유는 테스트와 유지보수를 쉽게 만들어주기 때문이에요. 예전처럼 직접 객체를 `new`로 만들면 코드가 변경에 약해지지만, DI를 사용하면 필요 객체만 갈아끼우면 돼서 확장성과 유연성이 높아져요."
+    },
+    {
+      "id": "27",
+      "boardId": 4,
+      "userId": "user07",
+      "createDate": "2025-03-13",
+      "content": "실무에서는 거의 다 생성자 주입을 씁니다. Spring Boot 2.4 이후로는 `@Autowired` 없이도 생성자 주입이 자동 적용돼요. Lombok의 `@RequiredArgsConstructor`와 함께 쓰면 코드도 매우 간결해져서 선호돼요."
+    },
+    {
+      "id": "28",
+      "boardId": 5,
+      "userId": "user02",
+      "createDate": "2025-03-11",
+      "content": "AOP는 공통 관심사(로깅, 보안, 트랜잭션 등)를 핵심 로직과 분리해서 코드 중복을 줄이고, 유지보수를 쉽게 만들기 위한 개념이에요. 예를 들어 모든 서비스 메서드마다 로그 찍는 코드를 넣으면 중복되고 지저분해지잖아요? 그걸 AOP로 한번에 해결할 수 있어요."
+    },
+    {
+      "id": "29",
+      "boardId": 5,
+      "userId": "user03",
+      "createDate": "2025-03-11",
+      "content": "AOP는 프록시 기반으로 작동해요. 스프링이 메서드 호출을 가로채서 그 전후에 원하는 코드를 실행할 수 있게 해주는 거죠. 그래서 `@Before`, `@After`, `@Around` 같은 어노테이션으로 메서드 실행 전후의 동작을 정의할 수 있어요."
+    },
+    {
+      "id": "30",
+      "boardId": 5,
+      "userId": "user04",
+      "createDate": "2025-03-11",
+      "content": "예를 들어 이런 코드도 가능해요:\n\n```java\n@Aspect\n@Component\npublic class LoggingAspect {\n  @Before(\"execution(* com.example.service.*.*(..))\")\n  public void logBefore(JoinPoint joinPoint) {\n    System.out.println(\"[LOG] Before method: \" + joinPoint.getSignature());\n  }\n}\n```\n\n이렇게 하면 `com.example.service` 하위의 모든 메서드 실행 전에 로그가 찍혀요. 핵심 로직에는 전혀 손대지 않고요."
+    },
+    {
+      "id": "31",
+      "boardId": 5,
+      "userId": "user06",
+      "createDate": "2025-03-12",
+      "content": "AOP는 트랜잭션 처리에도 필수예요. `@Transactional`도 사실 내부적으로 AOP예요. 예외 발생 시 자동으로 롤백하고, 커밋 시점도 조절할 수 있는 게 AOP 덕분이에요."
+    },
+    {
+      "id": "32",
+      "boardId": 5,
+      "userId": "user05",
+      "createDate": "2025-03-12",
+      "content": "실무에서는 보통 이런 시점에 AOP를 씁니다:\n- 요청 로깅 (Request URI, 파라미터 등)\n- 메서드 실행 시간 측정\n- 보안 체크 (권한 검사)\n- 예외 공통 처리\n- 트랜잭션 관리\n\n핵심 로직과는 상관없는 반복적인 코드를 분리할 수 있다는 게 최대 장점이에요."
+    },
+    {
+      "id": "33",
+      "boardId": 5,
+      "userId": "user07",
+      "createDate": "2025-03-12",
+      "content": "처음엔 코드로 직접 구현해도 되겠다고 생각할 수 있지만, 요구사항이 늘어날수록 AOP 없이 유지하기가 너무 힘들어요. 관심사를 잘 분리해두면 나중에 기능을 바꾸거나 테스트할 때 훨씬 수월합니다."
+    },
+    {
+      "id": "34",
+      "boardId": 6,
+      "userId": "user01",
+      "createDate": "2025-03-19",
+      "content": "`@RestController`는 `@Controller` + `@ResponseBody`의 조합이에요. 즉, 리턴값을 뷰 이름으로 해석하지 않고 그대로 HTTP 응답 바디에 출력해줘요. 주로 JSON이나 문자열 데이터를 API로 응답할 때 사용하죠."
+    },
+    {
+      "id": "35",
+      "boardId": 6,
+      "userId": "user03",
+      "createDate": "2025-03-19",
+      "content": "반대로 `@Controller`는 기본적으로 템플릿 뷰(jsp, thymeleaf 등)를 렌더링하는 데 쓰여요. 그래서 HTML 뷰 페이지를 반환할 때는 `@Controller`를 써야 하고, JSON 데이터를 리턴하려면 `@ResponseBody`를 붙이거나 `@RestController`를 사용하는 거죠."
+    },
+    {
+      "id": "36",
+      "boardId": 6,
+      "userId": "user05",
+      "createDate": "2025-03-19",
+      "content": "예를 들어 이런 코드가 있다고 할게요:\n\n```java\n@RestController\npublic class ApiController {\n  @GetMapping(\"/hello\")\n  public String hello() {\n    return \"Hello, JSON!\";\n  }\n}\n```\n\n이건 문자열을 그대로 응답해줘요. 반면 `@Controller`였다면 `hello.html`이라는 템플릿을 찾으려고 했을 거예요."
+    },
+    {
+      "id": "37",
+      "boardId": 6,
+      "userId": "user02",
+      "createDate": "2025-03-20",
+      "content": "실무에서는 뷰 페이지를 만드는 웹 애플리케이션이면 `@Controller`를, 백엔드 API 서버라면 `@RestController`를 씁니다. 대부분의 API 서버에서는 뷰가 필요 없으니까 거의 다 `@RestController`예요."
+    },
+    {
+      "id": "38",
+      "boardId": 6,
+      "userId": "user06",
+      "createDate": "2025-03-20",
+      "content": "헷갈린다면 이렇게 기억하면 돼요:\n- HTML 페이지 응답 → `@Controller`\n- JSON, XML, 텍스트 응답 → `@RestController`\n\n그리고 필요하다면 `@Controller`에 특정 메서드에만 `@ResponseBody` 붙여서 데이터 응답도 가능해요!"
+    },
+    {
+      "id": "39",
+      "boardId": 7,
+      "userId": "user02",
+      "createDate": "2025-03-25",
+      "content": "간단한 컴포넌트 내부 상태는 `useState`나 `useReducer`로 충분해요. 하지만 컴포넌트 간 상태 공유가 많아지면 Context API를 쓰는 게 자연스럽습니다. 단, Context는 깊은 트리에서 성능 이슈가 생길 수 있어요."
+    },
+    {
+      "id": "40",
+      "boardId": 7,
+      "userId": "user03",
+      "createDate": "2025-03-25",
+      "content": "Redux는 학습 곡선이 있지만 미들웨어나 개발자 도구 같은 생태계가 잘 갖춰져 있어서 대규모 프로젝트에서 유리해요. 특히 상태가 복잡하거나 예측 가능한 흐름이 필요한 경우에는 Redux가 안정적이죠."
+    },
+    {
+      "id": "41",
+      "boardId": 7,
+      "userId": "user04",
+      "createDate": "2025-03-25",
+      "content": "Recoil은 Facebook이 만든 상태 관리 라이브러리로, 상태를 atom 단위로 쪼갤 수 있어서 React의 상태 철학과 잘 맞아요. 비동기 셀렉터도 지원해서 서버 상태 관리에도 나름 유용해요."
+    },
+    {
+      "id": "42",
+      "boardId": 7,
+      "userId": "user05",
+      "createDate": "2025-03-25",
+      "content": "Zustand는 진짜 심플하고 배우기 쉬운 상태 관리 도구예요. 상태를 직접 업데이트할 수 있고, Redux처럼 보일러플레이트 코드가 없어요. 작은 프로젝트나 간단한 글로벌 상태용으로 딱이에요."
+    },
+    {
+      "id": "43",
+      "boardId": 7,
+      "userId": "user06",
+      "createDate": "2025-03-26",
+      "content": "저는 프로젝트 규모에 따라 이렇게 나눠요:\n- 소형: `useState`, `useReducer`\n- 중형: Context + Custom Hook 또는 Zustand\n- 대형: Redux 또는 Recoil\n\n상태 공유 범위와 협업 인원 수가 기준이 되더라고요."
+    },
+    {
+      "id": "44",
+      "boardId": 7,
+      "userId": "user07",
+      "createDate": "2025-03-26",
+      "content": "Context는 전역 상태처럼 보이지만, 실제로는 리렌더링 전파가 의외로 많아서 성능 문제가 생기기 쉬워요. 그래서 전역 상태를 자주 바꿔야 할 경우엔 Zustand 같은 라이브러리를 쓰는 게 나아요."
+    },
+    {
+      "id": "45",
+      "boardId": 7,
+      "userId": "user01",
+      "createDate": "2025-03-26",
+      "content": "각 라이브러리를 실제로 써보면서 팀에 맞는 걸 고르는 게 제일 좋은 것 같아요. 문서 잘 되어 있고 유지보수가 활발한 것도 중요하죠. 저는 작은 팀이면 Recoil, 큰 팀이면 Redux 추천합니다!"
+    },
+    {
+      "id": "46",
+      "boardId": 8,
+      "userId": "user02",
+      "createDate": "2025-03-29",
+      "content": "`useEffect(() => {}, [])`처럼 빈 배열을 넣으면 컴포넌트가 마운트될 때 한 번만 실행돼요. 의존성 배열에 상태나 props가 있으면 해당 값이 바뀔 때마다 실행되고요."
+    },
+    {
+      "id": "47",
+      "boardId": 8,
+      "userId": "user01",
+      "createDate": "2025-03-29",
+      "content": "무한 루프는 보통 `useEffect` 안에서 상태를 업데이트하고 그 상태를 의존성 배열에 넣었을 때 발생해요. 상태 업데이트 → 재실행 → 상태 업데이트 반복 순이에요."
+    },
+    {
+      "id": "48",
+      "boardId": 8,
+      "userId": "user05",
+      "createDate": "2025-03-30",
+      "content": "불필요한 재렌더링을 방지하려면, 꼭 필요한 값만 의존성 배열에 넣고, `useCallback`, `useMemo` 등을 같이 사용하면 좋아요."
+    },
+    {
+      "id": "49",
+      "boardId": 9,
+      "userId": "user01",
+      "createDate": "2025-04-02",
+      "content": "비슷한 구조라면 공통 로직을 추출해서 `BaseComponent`처럼 만들고, 그걸 조합하는 방식으로 확장하는 게 좋아요!"
+    },
+    {
+      "id": "50",
+      "boardId": 9,
+      "userId": "user03",
+      "createDate": "2025-04-02",
+      "content": "`children`과 `props` 조합은 필수예요. 예를 들어 `Card` 컴포넌트를 만들어서 그 안에 제목, 내용 등을 children으로 전달하면 다양한 구조로 재사용할 수 있어요."
+    },
+    {
+      "id": "51",
+      "boardId": 9,
+      "userId": "user02",
+      "createDate": "2025-04-03",
+      "content": "tailwindcss 쓸 때는 `className`을 props로 받아서 조합하면 스타일링까지 유연하게 재사용할 수 있어요!"
+    },
+    {
+      "id": "52",
+      "boardId": 10,
+      "userId": "user01",
+      "createDate": "2025-04-07",
+      "content": "클로저는 내부 함수가 외부 함수의 변수를 참조하는 특성 때문에, 변수의 상태를 기억할 수 있게 해줘요. 주로 콜백 함수나 이벤트 핸들러에서 유용하게 사용되죠."
+    },
+    {
+      "id": "53",
+      "boardId": 10,
+      "userId": "user03",
+      "createDate": "2025-04-07",
+      "content": "실무에서는 클로저를 활용한 패턴으로, 예를 들어, 데이터 은닉이나 모듈화에서 자주 사용해요. 메모리 누수와 관련해서는, 클로저가 참조하는 변수들이 가비지 컬렉션에 의해 삭제되지 않는 문제가 있을 수 있어요."
+    },
+    {
+      "id": "54",
+      "boardId": 10,
+      "userId": "user02",
+      "createDate": "2025-04-08",
+      "content": "클로저를 사용할 때는 함수 외부의 변수를 지속적으로 참조하므로 메모리 누수에 주의해야 해요. 이벤트 리스너나 setTimeout 같은 비동기 작업에서 클로저를 사용하면 문제가 발생할 수 있답니다."
+    },
+    {
+      "id": "55",
+      "boardId": 11,
+      "userId": "user04",
+      "createDate": "2025-04-08",
+      "content": "`async/await`은 코드가 순차적으로 실행되는 것처럼 보여서 가독성이 높고, 예외 처리가 `try/catch`를 사용해서 깔끔하게 처리할 수 있어요. 반면 `then`은 체이닝으로 여러 비동기 처리를 한 번에 할 수 있지만, 콜백 지옥에 빠질 위험이 있어요."
+    },
+    {
+      "id": "56",
+      "boardId": 11,
+      "userId": "user01",
+      "createDate": "2025-04-08",
+      "content": "`async/await`은 비동기 코드가 동기처럼 보이게 해서 가독성이 좋지만, `then`은 비동기 처리가 여러 개 있을 때 유리해요. 성능 차이는 미미하지만, 콜백 지옥을 피하려면 `async/await`가 더 좋습니다."
+    },
+    {
+      "id": "57",
+      "boardId": 11,
+      "userId": "user05",
+      "createDate": "2025-04-09",
+      "content": "실무에서는 `async/await`을 많이 사용해요. 가독성도 좋고, 에러 핸들링도 쉽게 할 수 있어서 실용적이에요. `then`은 다중 비동기 작업을 하나로 묶을 때 주로 사용합니다."
+    },
+    {
+      "id": "58",
+      "boardId": 12,
+      "userId": "user02",
+      "createDate": "2025-04-16",
+      "content": "호이스팅은 변수와 함수 선언이 코드 실행 전에 끌어올려지는 현상인데, `var`로 선언된 변수는 `undefined`로 초기화되고, `let`이나 `const`는 TDZ(Temporal Dead Zone) 영역에 있어, 선언되기 전에 접근하려고 하면 `ReferenceError`가 발생해요. 이 차이가 메모리 할당 방식에 따라 다릅니다."
+    },
+    {
+      "id": "59",
+      "boardId": 12,
+      "userId": "user03",
+      "createDate": "2025-04-17",
+      "content": "호이스팅을 이해하려면 코드가 실행되는 시점에 변수들이 어떻게 메모리에 할당되는지를 아는 것이 중요해요. `var`는 변수 선언만 끌어올려지고, 값 할당은 실제 코드에 도달할 때 발생해요. `let`과 `const`는 선언 자체가 호이스팅되지만, 초기화되기 전까지는 접근할 수 없어요."
+    },
+    {
+      "id": "60",
+      "boardId": 12,
+      "userId": "user01",
+      "createDate": "2025-04-17",
+      "content": "간단한 예를 들어보면, `var x; console.log(x)`는 `undefined`를 출력하지만, `let y; console.log(y)`는 `ReferenceError`가 발생해요. 이는 `let`이 TDZ에 있기 때문이죠. 선언 전에 값에 접근하려고 하면 오류가 발생하는 거죠."
+    },
+    {
+      "id": "61",
+      "boardId": 13,
+      "userId": "user02",
+      "createDate": "2025-04-18",
+      "content": "정규화는 데이터베이스에서 중복 데이터를 최소화하고 무결성을 높이기 위해 테이블을 나누는 과정이에요. 1NF, 2NF, 3NF는 각기 다른 수준에서 데이터를 정리하는 방법을 제공하고, 실무에서는 3NF까지 적용하는 경우가 많아요. 다만, 성능을 고려해서 일부러 정규화를 완전히 피할 수도 있어요."
+    },
+    {
+      "id": "62",
+      "boardId": 13,
+      "userId": "user01",
+      "createDate": "2025-04-19",
+      "content": "정규화를 하면 중복을 제거하고 데이터 무결성을 보장할 수 있어요. 예를 들어, 1NF는 각 열에 원자값만 들어가게 하고, 2NF는 부분적 종속성을 제거하며, 3NF는 이행적 종속성을 제거하죠. 실무에서는 너무 과도한 정규화는 성능에 영향을 줄 수 있기 때문에 적당히 선택적으로 적용하기도 해요."
+    },
+    {
+      "id": "63",
+      "boardId": 13,
+      "userId": "user04",
+      "createDate": "2025-04-20",
+      "content": "정규화는 데이터베이스 설계의 중요한 부분이에요. 하지만, 성능을 고려할 때는 때때로 일부 테이블을 비정규화하거나, 데이터 조회 속도를 높이기 위해 인덱스를 사용하는 경우도 많죠."
+    },
+    {
+      "id": "64",
+      "boardId": 14,
+      "userId": "user03",
+      "createDate": "2025-04-22",
+      "content": "인덱스는 데이터를 찾는 속도를 훨씬 빠르게 해줘요. `SELECT` 문에서 조건을 만족하는 데이터를 빠르게 찾아주기 때문에, 조회 성능에 큰 영향을 미칩니다. 하지만 인덱스를 너무 많이 사용하면 데이터 수정 시 성능 저하가 발생할 수 있어요. 자주 조회되는 컬럼에 인덱스를 추가하는 것이 효과적입니다."
+    },
+    {
+      "id": "65",
+      "boardId": 14,
+      "userId": "user02",
+      "createDate": "2025-04-22",
+      "content": "인덱스는 검색 속도를 개선하지만, `INSERT`, `UPDATE`, `DELETE` 성능을 떨어뜨릴 수 있어요. 인덱스가 많을수록 데이터 수정 시마다 인덱스를 업데이트해야 해서 성능에 영향을 줄 수 있죠. `EXPLAIN`을 사용해서 쿼리 성능을 분석하고 필요한 컬럼에만 인덱스를 추가하는 것이 좋습니다."
+    },
+    {
+      "id": "66",
+      "boardId": 14,
+      "userId": "user04",
+      "createDate": "2025-04-23",
+      "content": "인덱스를 적절히 사용하면 쿼리 성능을 크게 개선할 수 있지만, 너무 많은 인덱스를 생성하면 오히려 성능 저하가 발생할 수 있어요. `EXPLAIN`을 사용해 실행 계획을 확인하고, 자주 조회되는 컬럼이나 조인에 사용되는 컬럼에 인덱스를 걸어주는 것이 좋아요."
+    }
+  ]
+}
