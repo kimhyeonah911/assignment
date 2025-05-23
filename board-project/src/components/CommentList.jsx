@@ -5,13 +5,14 @@ import { FaTrash } from 'react-icons/fa';
 import { ClipLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 
-const CommentList = ({ boardComments, currentUser }) => {
-  const { deleteComment } = useCommentStore();
+const CommentList = ({ boardComments, boardId, currentUser }) => {
+  const { deleteComment, getComments } = useCommentStore();
   const [deleteCommentId, setDeleteCommentId] = useState(null);
 
   const handleDeleteComment = async (commentId) => {
     setDeleteCommentId(commentId);
     await deleteComment(commentId);
+    await getComments(boardId);
     toast.success('댓글 삭제 완료!');
     setDeleteCommentId(null);
   };
@@ -19,18 +20,18 @@ const CommentList = ({ boardComments, currentUser }) => {
   return (
     <>
       {boardComments.map((c) => (
-        <CommentBubble key={c.id} $isMyComment={c.userId === currentUser.id}>
+        <CommentBubble key={c.comment_no} $isMyComment={c.comment_writer === currentUser.user_id}>
           <CommentHeader>
             <HeaderLeft>
-              <strong>{c.userId}</strong> · {c.createDate}
+              <strong>{c.comment_writer}</strong> · {c.create_date}
             </HeaderLeft>
-            {c.userId === currentUser.id && (
-              <DeleteButton onClick={() => handleDeleteComment(c.id)}>
-                {deleteCommentId === c.id ? <ClipLoader size={6} color="#e53935" /> : <FaTrash />}
+            {c.comment_writer === currentUser.user_id && (
+              <DeleteButton onClick={() => handleDeleteComment(c.comment_no)}>
+                {deleteCommentId === c.comment_no ? <ClipLoader size={6} color="#e53935" /> : <FaTrash />}
               </DeleteButton>
             )}
           </CommentHeader>
-          <CommentContent>{c.content}</CommentContent>
+          <CommentContent>{c.comment_content}</CommentContent>
         </CommentBubble>
       ))}
     </>

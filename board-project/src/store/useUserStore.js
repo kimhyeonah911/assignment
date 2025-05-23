@@ -10,7 +10,7 @@ const useUserStore = create((set, get) => ({
   getUsers: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await axios.get('http://localhost:3001/users');
+      const res = await axios.get('http://localhost:8888/api/members');
       set({ users: res.data, loading: false });
     } catch (err) {
       set({ error: err.message, loading: false });
@@ -19,11 +19,11 @@ const useUserStore = create((set, get) => ({
 
   loginUser: (id, password) => {
     const { users } = get();
-    const user = users.find((u) => u.id === id && u.password === password);
+    const user = users.find((u) => u.user_id === id && u.user_pwd === password);
 
     if (user) {
       set({ currentUser: user });
-      return user.name;
+      return user.user_name;
     } else {
       set({ currentUser: null });
       return null;
@@ -32,20 +32,21 @@ const useUserStore = create((set, get) => ({
 
   findId: (id) => {
     const { users } = get();
-    if (users.find((u) => u.id === id)) {
+    if (users.find((u) => u.user_id === id)) {
       return true;
     } else {
       return false;
     }
   },
 
-  insertUser: async (id, password, name) => {
+  insertUser: async (user_id, user_pwd, user_name) => {
     try {
-      const newUser = { id, password, name };
-      const res = await axios.post(`http://localhost:3001/users`, newUser);
+      const newUser = { user_id, user_pwd, user_name };
+      const res = await axios.post(`http://localhost:8888/api/members`, newUser);
       set((state) => ({
         users: [...state.users, res.data],
       }));
+      return res;
     } catch (err) {
       console.error('회원 추가 실패:', err);
     }
@@ -55,37 +56,40 @@ const useUserStore = create((set, get) => ({
     set({ currentUser: null });
   },
 
-  updateUserName: async (userId, userPassword, userName) => {
+  updateUserName: async (user_id, user_pwd, user_name) => {
+    console.log(user_id, user_pwd, user_name);
     try {
-      const res = await axios.put(`http://localhost:3001/users/${userId}`, { password: userPassword, name: userName });
+      const res = await axios.put(`http://localhost:8888/api/members/${user_id}`, {
+        user_pwd: user_pwd,
+        user_name: user_name,
+      });
       set((state) => ({
-        users: state.users.map((user) =>
-          user.id === userId ? res.data : user
-        ),
+        users: state.users.map((user) => (user.user_id === user_id ? res.data : user)),
       }));
     } catch (err) {
       console.error('회원 이름 변경 실패:', err);
     }
-  },  
+  },
 
-  updateUserPassword: async (userId, userPassword, userName) => {
+  updateUserPassword: async (user_id, user_pwd, user_name) => {
     try {
-      const res = await axios.put(`http://localhost:3001/users/${userId}`, { password: userPassword, name: userName });
+      const res = await axios.put(`http://localhost:8888/api/members/${user_id}`, {
+        user_pwd: user_pwd,
+        user_name: user_name,
+      });
       set((state) => ({
-        users: state.users.map((user) =>
-          user.id === userId ? res.data : user
-        ),
+        users: state.users.map((user) => (user.user_id === user_id ? res.data : user)),
       }));
     } catch (err) {
       console.error('회원 비밀번호 변경 실패:', err);
     }
-  },  
+  },
 
-  deleteUser: async (userId) => {
+  deleteUser: async (user_id) => {
     try {
-      await axios.delete(`http://localhost:3001/users/${userId}`);
+      await axios.delete(`http://localhost:8888/api/members/${user_id}`);
       set((state) => ({
-        users: state.users.filter((user) => user.id !== userId),
+        users: state.users.filter((user) => user.user_id !== user_id),
       }));
     } catch (err) {
       console.error('회원 탈퇴 실패:', err);

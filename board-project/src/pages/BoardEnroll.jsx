@@ -32,12 +32,10 @@ const BoardEnroll = () => {
     setLoading(true);
     try {
       const newPost = {
-        userId: currentUser.id,
-        title,
-        content,
-        categoryId: category,
-        createDate: new Date().toISOString().split('T')[0],
-        count: 0,
+        board_writer: currentUser.user_id,
+        board_title: title,
+        board_content: content,
+        category_no: Number(category),
       };
       insertBoard(newPost);
       console.log('새 게시글:', newPost);

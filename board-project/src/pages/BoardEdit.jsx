@@ -11,7 +11,7 @@ const BoardEdit = () => {
   const { id } = useParams();
   const boardId = Number(id);
 
-  const { updateBoard, findBoard, getBoards } = useBoardStore();
+  const { updateBoard, board } = useBoardStore();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('1');
@@ -24,16 +24,10 @@ const BoardEdit = () => {
   const handleCategoryChange = (e) => setCategory(e.target.value);
 
   useEffect(() => {
-    getBoards();
-  }, [getBoards]);
-
-  const board = findBoard(id);
-
-  useEffect(() => {
     if (board) {
-      setTitle(board.title);
-      setContent(board.content);
-      setCategory(board.categoryId);
+      setTitle(board.board_title);
+      setContent(board.board_content);
+      setCategory(board.category_no);
     }
   }, [board]);
 
@@ -47,13 +41,10 @@ const BoardEdit = () => {
     setLoading(true);
     try {
       const newPost = {
-        id: board.id,
-        categoryId: category,
-        userId: board.userId,
-        createDate: board.createDate,
-        title,
-        content,
-        count: board.count,
+        board_no: board.board_no,
+        category_no: Number(category),
+        board_title: title,
+        board_content: content,
       };
       updateBoard(newPost, boardId);
       console.log('새 게시글:', newPost);
@@ -74,8 +65,8 @@ const BoardEdit = () => {
         <PostContainer>
           <BackButton onClick={() => navigate(-1)}>
             <IoMdArrowRoundBack />
-              뒤로가기
-            </BackButton>
+            뒤로가기
+          </BackButton>
           <Title>게시글 수정</Title>
           <Form onSubmit={handleSubmit}>
             <Label>카테고리</Label>
@@ -119,7 +110,7 @@ const PostContainer = styled.div`
   padding: 15px 100px 0;
   background-color: #f0f0f0;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: flex-start;
 `;
 

@@ -21,7 +21,7 @@ const Board = () => {
     getCategorys();
   }, [getBoards, getCategorys]);
 
-  const handleRowClick = (boardId) => {
+  const handleRowClick = () => {
     if (currentUser) {
       navigate(`/boardEnroll`);
     } else {
@@ -30,7 +30,9 @@ const Board = () => {
   };
 
   const filteredBoards =
-    selectedCategory === 'all' ? boards : boards.filter((board) => board.categoryId === selectedCategory);
+    selectedCategory === 'all'
+      ? (boards.content ?? [])
+      : (boards.content ?? []).filter((board) => board.category_no === selectedCategory);
 
   if (error) {
     return <ErrorMessage>게시판 데이터를 불러오는 데 오류가 발생했습니다.</ErrorMessage>;
@@ -47,8 +49,12 @@ const Board = () => {
                 전체
               </CategoryItem>
               {categorys.map((c) => (
-                <CategoryItem key={c.id} active={c.id === selectedCategory} onClick={() => setSelectedCategory(c.id)}>
-                  {c.name}
+                <CategoryItem
+                  key={c.category_no}
+                  active={c.category_no === selectedCategory}
+                  onClick={() => setSelectedCategory(c.category_no)}
+                >
+                  {c.category_name}
                 </CategoryItem>
               ))}
             </CategoryList>

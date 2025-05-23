@@ -17,31 +17,35 @@ const BoardDetail = () => {
   const boardId = Number(id);
   const navigate = useNavigate();
 
-  const { getBoards, findBoard, increaseCount, deleteBoard, loading } = useBoardStore();
-  const { getComments, insertComment, findComment } = useCommentStore();
+  const { findBoard, board, deleteBoard, loading } = useBoardStore();
+  const { getComments, comments, insertComment } = useCommentStore();
   const { currentUser } = useUserStore();
 
   const [comment, setComment] = useState('');
 
   useEffect(() => {
-    getBoards();
-    getComments();
-    increaseCount(id);
-  }, [getBoards, getComments, increaseCount]);
+    findBoard(boardId);
+  }, [boardId]);
 
-  const board = findBoard(id);
-  const boardComments = findComment(boardId);
+  useEffect(() => {
+    getComments(boardId);
+  }, [boardId]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!comment.trim()) return;
     const newComment = {
-      boardId,
-      userId: currentUser.id,
-      createDate: new Date().toISOString().split('T')[0],
-      content: comment,
+      board_no: boardId,
+      comment_writer: currentUser.user_id,
+      comment_content: comment,
     };
-    insertComment(newComment);
-    toast.success('댓글 작성 완료!');
+    const commentNo = await insertComment(newComment);
+    await getComments(boardId);
+
+    if (commentNo !== 0) {
+      toast.success('댓글 작성 완료!');
+    } else {
+      toast.error('댓글 작성에 실패하였습니다.');
+    }
     setComment('');
   };
 
@@ -72,14 +76,14 @@ const BoardDetail = () => {
             </BackButton>
 
             <TitleRow>
-              <Title>{board.title}</Title>
-              {currentUser.id === board.userId && (
+              <Title>{board.board_title}</Title>
+              {currentUser.user_id === board.board_writer && (
                 <ButtonGroup>
                   <EditButton to={`/boardEdit/${boardId}`}>
                     <FaEdit />
                     수정
                   </EditButton>
-                  <DeleteButton onClick={() => handleDeleteBoard(board.id)}>
+                  <DeleteButton onClick={() => handleDeleteBoard(board.board_no)}>
                     <FaTrash />
                     삭제
                   </DeleteButton>
@@ -88,15 +92,15 @@ const BoardDetail = () => {
             </TitleRow>
 
             <MetaInfo>
-              <span>작성자: {board.userId}</span>
-              <span>작성일: {board.createDate}</span>
+              <span>작성자: {board.board_writer}</span>
+              <span>작성일: {board.create_date}</span>
             </MetaInfo>
 
-            <Content>{board.content}</Content>
+            <Content>{board.board_content}</Content>
           </PostContainer>
 
           <CommentSection>
-            <CommentList boardComments={boardComments} currentUser={currentUser} />
+            <CommentList boardComments={comments} boardId={boardId} currentUser={currentUser} />
             <InputArea>
               <CommentInput
                 value={comment}

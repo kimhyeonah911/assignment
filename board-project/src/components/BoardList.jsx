@@ -19,11 +19,11 @@ const BoardList = ({ boards }) => {
     <tbody>
       {boards.length > 0 ? (
         boards.map((board) => (
-          <TableRow key={board.id} onClick={() => handleRowClick(board.id)}>
-            <TableData>{board.id}</TableData>
-            <TableData>{board.userId}</TableData>
-            <TableData>{board.createDate}</TableData>
-            <TableData>{board.title}</TableData>
+          <TableRow key={board.board_no} onClick={() => handleRowClick(board.board_no)}>
+            <TableData>{board.board_no}</TableData>
+            <TableData>{board.board_writer}</TableData>
+            <TableData>{board.create_date}</TableData>
+            <TableData>{board.board_title}</TableData>
             <TableData>{board.count}</TableData>
           </TableRow>
         ))

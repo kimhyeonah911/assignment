@@ -5,18 +5,12 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../store/useUserStore';
 import { BackButton, Container } from '../components/common/style';
+import { toast } from 'react-toastify';
 
 const MyPage = () => {
-  const {
-    currentUser,
-    getUsers,
-    updateUserName,
-    updateUserPassword,
-    deleteUser,
-    logoutUser
-  } = useUserStore();
+  const { currentUser, getUsers, updateUserName, updateUserPassword, deleteUser, logoutUser } = useUserStore();
 
-  const [editedName, setEditedName] = useState(currentUser.name);
+  const [editedName, setEditedName] = useState(currentUser.user_name);
   const [showModal, setShowModal] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -27,22 +21,26 @@ const MyPage = () => {
     getUsers();
   }, [getUsers]);
 
-  const handleNameUpdate = () => {
+  const handleNameUpdate = async () => {
     if (!editedName.trim()) {
       alert('이름을 입력해주세요.');
       return;
     }
-    updateUserName(currentUser.id, currentUser.password, editedName);
-    alert('이름이 변경되었습니다.');
+    const user = await updateUserName(currentUser.user_id, currentUser.user_pwd, editedName);
+    if (user !== null) {
+      toast.success('이름 변경 성공!');
+    } else {
+      toast.error('이름 변경이 실패하였습니다.');
+    }
   };
 
-  const handlePasswordChange = () => {
+  const handlePasswordChange = async () => {
     if (!currentPassword || !newPassword || !confirmPassword) {
       alert('모든 항목을 입력해주세요.');
       return;
     }
 
-    if (currentPassword !== currentUser.password) {
+    if (currentPassword !== currentUser.user_pwd) {
       alert('현재 비밀번호가 일치하지 않습니다.');
       return;
     }
@@ -57,16 +55,21 @@ const MyPage = () => {
       return;
     }
 
-    updateUserPassword(currentUser.id, newPassword, currentUser.name);
-    alert('비밀번호가 변경되었습니다. 다시 로그인 해주세요.');
-    logoutUser();
-    navigate('/');
+    const user = await updateUserPassword(currentUser.user_id, newPassword, currentUser.user_name);
+
+    if (user !== null) {
+      alert('비밀번호가 변경되었습니다. 다시 로그인 해주세요.');
+      logoutUser();
+      navigate('/');
+    } else {
+      toast.error('비밀번호 변경이 실패하였습니다.');
+    }
   };
 
   const handleDeleteAccount = () => {
     const confirmed = window.confirm('정말 탈퇴하시겠습니까?');
     if (confirmed) {
-      deleteUser(currentUser.id);
+      deleteUser(currentUser.user_id);
       alert('회원 탈퇴가 완료되었습니다.');
       navigate('/');
     }
@@ -86,23 +89,18 @@ const MyPage = () => {
 
             <InfoRow>
               <Label>아이디</Label>
-              <Value value={currentUser.id} readOnly />
+              <Value value={currentUser.user_id} readOnly />
             </InfoRow>
 
             <InfoRow>
               <Label>이름</Label>
-              <NameInput
-                value={editedName}
-                onChange={(e) => setEditedName(e.target.value)}
-              />
+              <NameInput value={editedName} onChange={(e) => setEditedName(e.target.value)} />
               <NameChangeButton onClick={handleNameUpdate}>변경</NameChangeButton>
             </InfoRow>
 
             <InfoRow>
               <Label>비밀번호</Label>
-              <PasswordButton onClick={() => setShowModal(true)}>
-                비밀번호 변경
-              </PasswordButton>
+              <PasswordButton onClick={() => setShowModal(true)}>비밀번호 변경</PasswordButton>
             </InfoRow>
 
             <InfoRow>

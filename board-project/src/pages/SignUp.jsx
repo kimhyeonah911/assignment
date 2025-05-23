@@ -64,10 +64,13 @@ const SignUp = () => {
     }
   }, [passwordValue, confirmPasswordValue]);
 
-  const onSubmit = (data) => {
-    console.log('회원가입 데이터:', data);
-    insertUser(data.id, data.password, data.name);
-    alert('회원가입이 완료되었습니다!');
+  const onSubmit = async (data) => {
+    const userId = await insertUser(data.id, data.password, data.name);
+    if (userId !== null) {
+      alert('회원가입이 완료되었습니다!');
+    } else {
+      alert('회원가입이 실패하였습니다.');
+    }
     navigate('/');
   };
 

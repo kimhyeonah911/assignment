@@ -9,7 +9,7 @@ const useCategoryStore = create((set) => ({
   getCategorys: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await axios.get('http://localhost:3001/categorys');
+      const res = await axios.get('http://localhost:8888/api/categorys');
       set({ categorys: res.data, loading: false });
     } catch (err) {
       set({ error: err.message, loading: false });
